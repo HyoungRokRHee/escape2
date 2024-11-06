@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>사라진 기억의 조각</title>
+    <title>QR Code Puzzle</title>
     <style>
-        /* 중앙 정렬 및 배경 이미지 스타일 */
+        /* 독도체 폰트 불러오기 */
+        @font-face {
+            font-family: 'Dokdo';
+            src: url('./fonts/Dokdo-Regular.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* 전체 배경 이미지 설정 */
         body {
+            background-image: url('https://github.com/HyoungRokRHee/escape1/raw/main/whole.png?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -14,99 +26,78 @@
             height: 100vh;
             margin: 0;
             color: white;
-            font-family: Arial, sans-serif;
             text-align: center;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            font-family: 'Dokdo', sans-serif;
+            font-size: 1.2em;
         }
-        #passwordSection, #puzzleSection, #questionSection, #finalSection {
+        #puzzleSection, #resultSection {
             display: none;
-            width: 100%;
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
         }
         input, button {
             padding: 10px;
             font-size: 1em;
             margin: 10px 0;
-            text-align: center;
-            cursor: pointer;
         }
-        img {
-            max-width: 90%;
-            height: auto;
-            margin-top: 20px;
+        h2 {
+            margin-top: 50px;
         }
-        .red-text {
+        #result.success {
             color: red;
-            font-size: 2em;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <!-- 첫 번째 페이지: 비밀번호 입력 -->
-    <div id="passwordSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');">
-        <h2>비밀번호를 입력하세요</h2>
-        <input type="text" id="passwordInput" placeholder="비밀번호 입력">
-        <button onclick="checkPassword()">확인</button>
-    </div>
+    <h2 id="passwordMessage">비밀번호를 입력하세요</h2>
+    <input type="text" id="passwordInput" placeholder="비밀번호 입력">
+    <button onclick="checkPassword()">확인</button>
 
-    <!-- 두 번째 페이지: 이미지와 확인 버튼 -->
-    <div id="puzzleSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/escape2.png?raw=true');">
-        <button onclick="goToQuestionPage()">확인</button>
-    </div>
-
-    <!-- 세 번째 페이지: 문제와 이미지, 정답 입력 -->
-    <div id="questionSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');">
-        <h2>빈칸에 들어갈 숫자는?</h2>
+    <div id="puzzleSection">
         <img src="https://github.com/HyoungRokRHee/escape2/raw/main/escape2-2.png?raw=true" alt="Puzzle Image">
-        <input type="text" id="answerInput" placeholder="정답 입력">
-        <button onclick="checkAnswer()">제출</button>
+        <p>정답을 입력하세요:</p>
+        <input type="text" id="answerInput">
+        <button onclick="checkAnswer()">확인</button>
     </div>
 
-    <!-- 네 번째 페이지: 결과 안내 -->
-    <div id="finalSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');">
-        <h1 class="red-text">4층 유년부로 가세요</h1>
-    </div>
+    <p id="result"></p>
 
     <script>
-        // 첫 번째 페이지 비밀번호 확인
         function checkPassword() {
             const password = document.getElementById("passwordInput").value;
             if (password === "3640") {
-                document.getElementById("passwordSection").style.display = "none";
-                document.getElementById("puzzleSection").style.display = "flex";
+                document.getElementById("puzzleSection").style.display = "block";
+                document.getElementById("passwordInput").style.display = "none";
+                document.querySelector("button").style.display = "none"; // 확인 버튼 숨기기
+                const passwordMessage = document.getElementById("passwordMessage");
+                passwordMessage.textContent = "먼저, 내 기억을 되찾기 위해서는
+내가 언제부터 기억을 잃었는지,
+내 마지막 기억이 무엇인지 끄집어내야한다.";
+                passwordMessage.style.marginTop = "20px"; // 아래로 내리기
             } else {
                 alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
             }
         }
 
-        // 두 번째 페이지에서 세 번째 페이지로 이동
-        function goToQuestionPage() {
-            document.getElementById("puzzleSection").style.display = "none";
-            document.getElementById("questionSection").style.display = "flex";
-        }
-
-        // 세 번째 페이지에서 네 번째 페이지로 이동
         function checkAnswer() {
-            const answer = document.getElementById("answerInput").value;
-            if (answer === "2") {
-                document.getElementById("questionSection").style.display = "none";
-                document.getElementById("finalSection").style.display = "flex";
+            const answer = document.getElementById("answerInput").value.toUpperCase();
+            if (answer === "LOGIN") {
+                document.body.innerHTML = `
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; background-image: url('https://github.com/HyoungRokRHee/escape1/raw/main/whole.png?raw=true'); background-size: cover;">
+                        <h1 style="color: red; font-size: 2em;">4층 유년부로 가세요.</h1>
+                        <h2 style="color: red; font-size: 1.5em; margin-top: 20px;">비밀번호: 2290</h2>
+                    </div>
+                `;
             } else {
-                alert("정답이 틀렸습니다. 다시 시도하세요.");
+                const result = document.getElementById("result");
+                result.textContent = "틀렸습니다. 다시 시도하세요.";
+                result.className = "";
             }
         }
-
-        // 첫 번째 페이지만 처음에 표시
-        document.getElementById("passwordSection").style.display = "flex";
     </script>
 
 </body>
