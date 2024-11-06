@@ -40,6 +40,11 @@
             background-repeat: no-repeat;
             width: 100%;
             height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 20vh; /* 페이지 콘텐츠를 아래로 내리기 위한 패딩 */
         }
         input, button {
             padding: 10px;
@@ -51,6 +56,10 @@
         img {
             max-width: 90%;
             height: auto;
+            margin-top: 20px; /* 이미지와 텍스트 간격 조정 */
+        }
+        p, h2 {
+            margin-top: 20px; /* 텍스트 아래 공간 확보 */
         }
     </style>
 </head>
@@ -84,8 +93,6 @@
             if (password === "3640") {
                 document.getElementById("passwordSection").style.display = "none";
                 document.getElementById("puzzleSection").style.display = "flex";
-                document.getElementById("puzzleSection").style.flexDirection = "column";
-                document.getElementById("puzzleSection").style.alignItems = "center";
             } else {
                 alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
             }
@@ -94,8 +101,6 @@
         function goToNextPage() {
             document.getElementById("puzzleSection").style.display = "none";
             document.getElementById("nextPage").style.display = "flex";
-            document.getElementById("nextPage").style.flexDirection = "column";
-            document.getElementById("nextPage").style.alignItems = "center";
         }
 
         function checkAnswer() {
