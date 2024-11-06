@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>사라진 기억의 조각</title>
     <style>
-        /* 중앙 정렬을 위한 스타일 */
+        /* 중앙 정렬 및 배경 이미지 스타일 */
         body {
             display: flex;
             flex-direction: column;
@@ -13,7 +13,6 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: black;
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
@@ -26,8 +25,6 @@
             font-size: 1em;
             margin: 10px 0;
             text-align: center;
-        }
-        button {
             cursor: pointer;
         }
     </style>
@@ -35,17 +32,25 @@
 <body>
 
     <!-- 첫 번째 페이지 -->
-    <div id="passwordSection">
+    <div id="passwordSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/escape2.png?raw=true'); background-size: cover;">
         <h2>비밀번호를 입력하세요</h2>
         <input type="text" id="passwordInput" placeholder="비밀번호 입력">
         <button onclick="checkPassword()">확인</button>
     </div>
 
     <!-- 두 번째 페이지 -->
-    <div id="puzzleSection">
-        <img src="https://github.com/HyoungRokRHee/escape1/raw/main/second_image.png" alt="사라진 기억의 조각">
+    <div id="puzzleSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true'); background-size: cover;">
         <p>먼저, 내 기억을 되찾기 위해서는<br>내가 언제부터 기억을 잃었는지,<br>내 마지막 기억이 무엇인지 끄집어내야 한다.</p>
-        <button onclick="showNext()">확인</button>
+        <button onclick="goToNextPage()">확인</button>
+    </div>
+
+    <!-- 세 번째 페이지 -->
+    <div id="nextPage" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true'); background-size: cover;">
+        <h2>빈칸에 들어갈 숫자는?</h2>
+        <img src="https://github.com/HyoungRokRHee/escape2/raw/main/escape2-2.png?raw=true" alt="Puzzle Image">
+        <p>힌트: 시계를</p>
+        <input type="text" id="answerInput" placeholder="정답 입력">
+        <button onclick="checkAnswer()">제출</button>
     </div>
 
     <script>
@@ -61,8 +66,20 @@
             }
         }
 
-        function showNext() {
-            alert("다음 단계로 이동합니다."); // 이후 단계가 있다면 이 부분에 기능 추가 가능
+        function goToNextPage() {
+            document.getElementById("puzzleSection").style.display = "none";
+            document.getElementById("nextPage").style.display = "flex";
+            document.getElementById("nextPage").style.flexDirection = "column";
+            document.getElementById("nextPage").style.alignItems = "center";
+        }
+
+        function checkAnswer() {
+            const answer = document.getElementById("answerInput").value;
+            if (answer) {
+                alert("정답이 제출되었습니다."); // 정답 처리 로직을 추가할 수 있습니다.
+            } else {
+                alert("정답을 입력하세요.");
+            }
         }
     </script>
 
