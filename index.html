@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사라진 기억의 조각</title>
+    <style>
+        /* 중앙 정렬을 위한 스타일 */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #puzzleSection, #nextPage {
+            display: none;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 1em;
+            margin: 10px 0;
+            text-align: center;
+        }
+        button {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 첫 번째 페이지 -->
+    <div id="passwordSection">
+        <h2>비밀번호를 입력하세요</h2>
+        <input type="text" id="passwordInput" placeholder="비밀번호 입력">
+        <button onclick="checkPassword()">확인</button>
+    </div>
+
+    <!-- 두 번째 페이지 -->
+    <div id="puzzleSection">
+        <img src="https://github.com/HyoungRokRHee/escape1/raw/main/second_image.png" alt="사라진 기억의 조각">
+        <p>먼저, 내 기억을 되찾기 위해서는<br>내가 언제부터 기억을 잃었는지,<br>내 마지막 기억이 무엇인지 끄집어내야 한다.</p>
+        <button onclick="showNext()">확인</button>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById("passwordInput").value;
+            if (password === "3640") {
+                document.getElementById("passwordSection").style.display = "none";
+                document.getElementById("puzzleSection").style.display = "flex";
+                document.getElementById("puzzleSection").style.flexDirection = "column";
+                document.getElementById("puzzleSection").style.alignItems = "center";
+            } else {
+                alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
+            }
+        }
+
+        function showNext() {
+            alert("다음 단계로 이동합니다."); // 이후 단계가 있다면 이 부분에 기능 추가 가능
+        }
+    </script>
+
+</body>
+</html>
