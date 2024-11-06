@@ -55,7 +55,7 @@
 
     <h2 id="passwordMessage">비밀번호를 입력하세요</h2>
     <input type="text" id="passwordInput" placeholder="비밀번호 입력">
-    <button onclick="checkPassword()">확인</button>
+    <button id="passwordButton" onclick="checkPassword()">확인</button>
 
     <div id="puzzleSection">
         <img src="https://github.com/HyoungRokRHee/escape2/raw/main/escape2-2.png?raw=true" alt="Puzzle Image">
@@ -72,11 +72,9 @@
             if (password === "3640") {
                 document.getElementById("puzzleSection").style.display = "block";
                 document.getElementById("passwordInput").style.display = "none";
-                document.querySelector("button").style.display = "none"; // 확인 버튼 숨기기
+                document.getElementById("passwordButton").style.display = "none"; // ID로 버튼 숨기기
                 const passwordMessage = document.getElementById("passwordMessage");
-                passwordMessage.textContent = "먼저, 내 기억을 되찾기 위해서는
-내가 언제부터 기억을 잃었는지,
-내 마지막 기억이 무엇인지 끄집어내야한다.";
+                passwordMessage.textContent = "먼저, 내 기억을 되찾기 위해서는\n내가 언제부터 기억을 잃었는지,\n내 마지막 기억이 무엇인지 끄집어내야한다.";
                 passwordMessage.style.marginTop = "20px"; // 아래로 내리기
             } else {
                 alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
