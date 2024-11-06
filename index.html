@@ -32,6 +32,7 @@
         }
         #puzzleSection, #resultSection {
             display: none;
+            margin-top: 30px; /* 전체 섹션을 아래로 이동 */
         }
         img {
             max-width: 100%;
@@ -44,6 +45,11 @@
         }
         h2 {
             margin-top: 50px;
+        }
+        #passwordMessage {
+            font-size: 0.6em; /* 글자 크기 절반으로 줄이기 */
+            margin-top: 20px; /* 아래로 내리기 */
+            line-height: 1.5em; /* 줄 간격 조절 */
         }
         #result.success {
             color: red;
@@ -59,7 +65,7 @@
 
     <div id="puzzleSection">
         <img src="https://github.com/HyoungRokRHee/escape2/raw/main/escape2-2.png?raw=true" alt="Puzzle Image">
-        <p>정답을 입력하세요:\n힌트:시계</p>
+        <p>정답을 입력하세요. 힌트:시계</p>
         <input type="text" id="answerInput">
         <button onclick="checkAnswer()">확인</button>
     </div>
@@ -76,6 +82,7 @@
                 const passwordMessage = document.getElementById("passwordMessage");
                 passwordMessage.textContent = "먼저, 내 기억을 되찾기 위해서는\n내가 언제부터 기억을 잃었는지,\n내 마지막 기억이 무엇인지 끄집어내야한다.";
                 passwordMessage.style.marginTop = "20px"; // 아래로 내리기
+                passwordMessage.style.fontSize = "0.6em"; // 글자 크기 절반으로 줄이기
             } else {
                 alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
             }
@@ -85,8 +92,8 @@
             const answer = document.getElementById("answerInput").value.toUpperCase();
             if (answer === "2") {
                 document.body.innerHTML = `
-                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; background-image: url('https://github.com/HyoungRokRHee/escape1/raw/main/whole.png?raw=true'); background-size: cover;">
-                        <h1 style="color: red; font-size: 2em;">4층 유년부로 가세요.</h1>
+                    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; background-image: url('https://github.com/HyoungRokRHee/escape1/raw/main/whole.png?raw=true'); background-size: cover; margin-top: 30px;">
+                        <h1 style="color: red; font-size: 2em; margin-top: 50px;">4층 유년부로 가세요.</h1>
                         <h2 style="color: red; font-size: 1.5em; margin-top: 20px;">비밀번호: 2290</h2>
                     </div>
                 `;
