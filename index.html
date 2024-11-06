@@ -16,9 +16,30 @@
             color: white;
             font-family: Arial, sans-serif;
             text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        #passwordSection {
+            background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100vh;
         }
         #puzzleSection, #nextPage {
             display: none;
+            background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
         }
         input, button {
             padding: 10px;
@@ -27,25 +48,29 @@
             text-align: center;
             cursor: pointer;
         }
+        img {
+            max-width: 90%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
 
     <!-- 첫 번째 페이지 -->
-    <div id="passwordSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/escape2.png?raw=true'); background-size: cover;">
+    <div id="passwordSection">
         <h2>비밀번호를 입력하세요</h2>
         <input type="text" id="passwordInput" placeholder="비밀번호 입력">
         <button onclick="checkPassword()">확인</button>
     </div>
 
     <!-- 두 번째 페이지 -->
-    <div id="puzzleSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true'); background-size: cover;">
+    <div id="puzzleSection">
         <p>먼저, 내 기억을 되찾기 위해서는<br>내가 언제부터 기억을 잃었는지,<br>내 마지막 기억이 무엇인지 끄집어내야 한다.</p>
         <button onclick="goToNextPage()">확인</button>
     </div>
 
     <!-- 세 번째 페이지 -->
-    <div id="nextPage" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true'); background-size: cover;">
+    <div id="nextPage">
         <h2>빈칸에 들어갈 숫자는?</h2>
         <img src="https://github.com/HyoungRokRHee/escape2/raw/main/escape2-2.png?raw=true" alt="Puzzle Image">
         <p>힌트: 시계를</p>
