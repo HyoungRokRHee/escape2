@@ -20,8 +20,10 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-        #passwordSection {
-            background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');
+        #passwordSection, #puzzleSection, #questionSection, #finalSection {
+            display: none;
+            width: 100%;
+            height: 100vh;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -29,22 +31,6 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            height: 100vh;
-        }
-        #puzzleSection, #nextPage {
-            display: none;
-            background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding-top: 20vh; /* 페이지 콘텐츠를 아래로 내리기 위한 패딩 */
         }
         input, button {
             padding: 10px;
@@ -58,36 +44,41 @@
             height: auto;
             margin-top: 20px; /* 이미지와 텍스트 간격 조정 */
         }
-        p, h2 {
-            margin-top: 20px; /* 텍스트 아래 공간 확보 */
+        .red-text {
+            color: red;
+            font-size: 2em;
         }
     </style>
 </head>
 <body>
 
-    <!-- 첫 번째 페이지 -->
-    <div id="passwordSection">
+    <!-- 첫 번째 페이지: 비밀번호 입력 -->
+    <div id="passwordSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');">
         <h2>비밀번호를 입력하세요</h2>
         <input type="text" id="passwordInput" placeholder="비밀번호 입력">
         <button onclick="checkPassword()">확인</button>
     </div>
 
-    <!-- 두 번째 페이지 -->
-    <div id="puzzleSection">
-        <p>먼저, 내 기억을 되찾기 위해서는<br>내가 언제부터 기억을 잃었는지,<br>내 마지막 기억이 무엇인지 끄집어내야 한다.</p>
-        <button onclick="goToNextPage()">확인</button>
+    <!-- 두 번째 페이지: 이미지와 확인 버튼 -->
+    <div id="puzzleSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/escape2.png?raw=true');">
+        <button onclick="goToQuestionPage()">확인</button>
     </div>
 
-    <!-- 세 번째 페이지 -->
-    <div id="nextPage">
+    <!-- 세 번째 페이지: 문제와 이미지, 정답 입력 -->
+    <div id="questionSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');">
         <h2>빈칸에 들어갈 숫자는?</h2>
         <img src="https://github.com/HyoungRokRHee/escape2/raw/main/escape2-2.png?raw=true" alt="Puzzle Image">
-        <p>힌트: 시계를</p>
         <input type="text" id="answerInput" placeholder="정답 입력">
         <button onclick="checkAnswer()">제출</button>
     </div>
 
+    <!-- 네 번째 페이지: 결과 안내 -->
+    <div id="finalSection" style="background-image: url('https://github.com/HyoungRokRHee/escape2/raw/main/whole.png?raw=true');">
+        <h1 class="red-text">4층 유년부로 가세요</h1>
+    </div>
+
     <script>
+        // 첫 번째 페이지 비밀번호 확인
         function checkPassword() {
             const password = document.getElementById("passwordInput").value;
             if (password === "3640") {
@@ -98,17 +89,20 @@
             }
         }
 
-        function goToNextPage() {
+        // 두 번째 페이지에서 세 번째 페이지로 이동
+        function goToQuestionPage() {
             document.getElementById("puzzleSection").style.display = "none";
-            document.getElementById("nextPage").style.display = "flex";
+            document.getElementById("questionSection").style.display = "flex";
         }
 
+        // 세 번째 페이지에서 네 번째 페이지로 이동
         function checkAnswer() {
             const answer = document.getElementById("answerInput").value;
-            if (answer) {
-                alert("정답이 제출되었습니다."); // 정답 처리 로직을 추가할 수 있습니다.
+            if (answer === "2") {
+                document.getElementById("questionSection").style.display = "none";
+                document.getElementById("finalSection").style.display = "flex";
             } else {
-                alert("정답을 입력하세요.");
+                alert("정답이 틀렸습니다. 다시 시도하세요.");
             }
         }
     </script>
