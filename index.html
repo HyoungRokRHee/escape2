@@ -59,7 +59,7 @@
 
     <div id="puzzleSection">
         <img src="https://github.com/HyoungRokRHee/escape2/raw/main/escape2-2.png?raw=true" alt="Puzzle Image">
-        <p>정답을 입력하세요:</p>
+        <p>정답을 입력하세요:\n힌트:시계</p>
         <input type="text" id="answerInput">
         <button onclick="checkAnswer()">확인</button>
     </div>
@@ -83,7 +83,7 @@
 
         function checkAnswer() {
             const answer = document.getElementById("answerInput").value.toUpperCase();
-            if (answer === "LOGIN") {
+            if (answer === "2") {
                 document.body.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; background-image: url('https://github.com/HyoungRokRHee/escape1/raw/main/whole.png?raw=true'); background-size: cover;">
                         <h1 style="color: red; font-size: 2em;">4층 유년부로 가세요.</h1>
