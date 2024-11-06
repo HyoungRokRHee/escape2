@@ -74,19 +74,19 @@
 
     <script>
         function checkPassword() {
-            const password = document.getElementById("passwordInput").value;
-            if (password === "3640") {
-                document.getElementById("puzzleSection").style.display = "block";
-                document.getElementById("passwordInput").style.display = "none";
-                document.getElementById("passwordButton").style.display = "none"; // ID로 버튼 숨기기
-                const passwordMessage = document.getElementById("passwordMessage");
-                passwordMessage.textContent = "먼저, 내 기억을 되찾기 위해서는<br>내가 언제부터 기억을 잃었는지,<br>내 마지막 기억이 무엇인지 끄집어내야한다.";
-                passwordMessage.style.marginTop = "20px"; // 아래로 내리기
-                passwordMessage.style.fontSize = "0.6em"; // 글자 크기 절반으로 줄이기
-            } else {
-                alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
-            }
-        }
+    const password = document.getElementById("passwordInput").value;
+    if (password === "3640") {
+        document.getElementById("puzzleSection").style.display = "block";
+        document.getElementById("passwordInput").style.display = "none";
+        document.getElementById("passwordButton").style.display = "none"; // ID로 버튼 숨기기
+        const passwordMessage = document.getElementById("passwordMessage");
+        passwordMessage.innerHTML = "먼저, 내 기억을 되찾기 위해서는<br>내가 언제부터 기억을 잃었는지,<br>내 마지막 기억이 무엇인지 끄집어내야한다.";
+        passwordMessage.style.marginTop = "20px"; // 아래로 내리기
+        passwordMessage.style.fontSize = "0.6em"; // 글자 크기 절반으로 줄이기
+    } else {
+        alert("비밀번호가 틀렸습니다. 다시 시도하세요.");
+    }
+}
 
         function checkAnswer() {
             const answer = document.getElementById("answerInput").value.toUpperCase();
