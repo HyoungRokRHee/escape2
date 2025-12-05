@@ -9,114 +9,110 @@
         body {
             margin: 0;
             padding: 0;
-            height: 100vh;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background: black;
         }
 
+        /* 화면 전체 이미지 */
+        #screen {
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 입력/버튼 UI 박스 */
         #uiBox {
-            position: absolute;
-            bottom: 50px;
+            position: fixed;
+            bottom: 40px;
             width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            text-align: center;
         }
 
         input, button {
             padding: 12px;
-            font-size: 1.1em;
-            margin: 8px 0;
+            font-size: 1.2em;
             border-radius: 10px;
             border: none;
+            margin-bottom: 8px;
         }
 
         button {
-            background-color: rgba(255, 255, 255, 0.85);
+            background: rgba(255,255,255,0.85);
             font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div id="uiBox">
+    <!-- 메인 이미지 -->
+    <img id="screen"
+         src="https://github.com/HyoungRokRHee/escape1/raw/main/first.png?raw=true">
 
-        <!-- FIRST: 비밀번호 3640 -->
+    <!-- UI 박스 -->
+    <div id="uiBox">
+        <!-- FIRST PW -->
         <div id="passwordSection1">
-            <input type="text" id="pw1" placeholder="비밀번호 입력">
+            <input id="pw1" placeholder="비밀번호 입력">
+            <br>
             <button onclick="checkPw1()">확인</button>
         </div>
 
-        <!-- NEXT 버튼 -->
+        <!-- NEXT BUTTON -->
         <div id="nextSection" style="display:none;">
             <button onclick="goNext()">다음</button>
         </div>
 
-        <!-- SECOND PASSWORD: 0907 -->
+        <!-- SECOND PW -->
         <div id="passwordSection2" style="display:none;">
-            <input type="text" id="pw2" placeholder="비밀번호 입력">
+            <input id="pw2" placeholder="비밀번호 입력">
+            <br>
             <button onclick="checkPw2()">확인</button>
         </div>
-
     </div>
 
-    <script>
-        // 초기 화면: first.png
-        document.body.style.backgroundImage =
-            "url('https://github.com/HyoungRokRHee/escape1/raw/main/first.png?raw=true')";
+<script>
+    const screen = document.getElementById("screen");
 
-        let step = 0;
+    let step = 0;
 
-        // 첫 번째 비밀번호 (3640)
-        function checkPw1() {
-            const pw = document.getElementById("pw1").value;
+    // 1단계 비밀번호 (3640)
+    function checkPw1() {
+        if (document.getElementById("pw1").value === "3640") {
+            screen.src =
+                "https://github.com/HyoungRokRHee/escape1/raw/main/escape33-1.png?raw=true";
 
-            if (pw === "3640") {
-                document.body.style.backgroundImage =
-                    "url('https://github.com/HyoungRokRHee/escape1/raw/main/escape33-1.png?raw=true')";
+            document.getElementById("passwordSection1").style.display = "none";
+            document.getElementById("nextSection").style.display = "block";
+            step = 1;
 
-                document.getElementById("passwordSection1").style.display = "none";
-                document.getElementById("nextSection").style.display = "flex";
+        } else alert("비밀번호가 틀렸습니다.");
+    }
 
-                step = 1;
-            } else {
-                alert("비밀번호가 틀렸습니다.");
-            }
+    // escape33-1 → escape33-2
+    function goNext() {
+        if (step === 1) {
+            screen.src =
+                "https://github.com/HyoungRokRHee/escape1/raw/main/escape33-2.png?raw=true";
+
+            document.getElementById("nextSection").style.display = "none";
+            document.getElementById("passwordSection2").style.display = "block";
+
+            step = 2;
         }
+    }
 
-        // escape33-1 → escape33-2
-        function goNext() {
-            if (step === 1) {
-                document.body.style.backgroundImage =
-                    "url('https://github.com/HyoungRokRHee/escape1/raw/main/escape33-2.png?raw=true')";
+    // 두 번째 비밀번호 (0907)
+    function checkPw2() {
+        if (document.getElementById("pw2").value === "0907") {
+            screen.src =
+                "https://github.com/HyoungRokRHee/escape1/raw/main/escape33-4.png?raw=true";
 
-                document.getElementById("nextSection").style.display = "none";
-                document.getElementById("passwordSection2").style.display = "flex";
+            document.getElementById("passwordSection2").style.display = "none";
 
-                step = 2;
-            }
-        }
-
-        // 두 번째 비밀번호 (0907)
-        function checkPw2() {
-            const pw = document.getElementById("pw2").value;
-
-            if (pw === "0907") {
-                document.body.style.backgroundImage =
-                    "url('https://github.com/HyoungRokRHee/escape1/raw/main/escape33-3.png?raw=true')";
-
-                document.getElementById("passwordSection2").style.display = "none";
-            } else {
-                alert("비밀번호가 틀렸습니다.");
-            }
-        }
-
-    </script>
+        } else alert("비밀번호가 틀렸습니다.");
+    }
+</script>
 
 </body>
 </html>
